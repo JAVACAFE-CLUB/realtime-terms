@@ -189,3 +189,128 @@ git push --force-with-lease
 git submodule add https://github.com/example/lib.git libs/lib
 git subtree add --prefix=libs/lib https://github.com/example/lib.git main --squash
 ```
+
+--
+
+
+## 📘 Git 명령어 총정리
+
+> Git의 주요 명령어를 분류별로 정리한 문서입니다. 모든 명령어는 실무에서 자주 사용하는 기준으로 설명과 함께 제공합니다.
+
+---
+
+### 📁 저장소 초기화 및 설정
+
+| 명령어 | 설명 |
+|--------|------|
+| `git init` | 로컬 Git 저장소 초기화 |
+| `git clone <repo>` | 원격 저장소 복제 |
+| `git config --global user.name "이름"` | 사용자 이름 전역 설정 |
+| `git config --global user.email "이메일"` | 사용자 이메일 전역 설정 |
+| `git config --list` | 현재 설정 정보 확인 |
+
+---
+
+### 📄 파일 상태 확인 및 스테이징
+
+| 명령어 | 설명 |
+|--------|------|
+| `git status` | 현재 작업 디렉토리 상태 확인 |
+| `git add <파일>` | 변경된 파일 스테이징 |
+| `git add .` | 모든 변경 파일 스테이징 |
+| `git restore <파일>` | 수정된 파일 원래대로 복원 (tracked only) |
+| `git clean -fd` | 추적되지 않은 파일/디렉토리 삭제 |
+
+---
+
+### 💾 커밋 관리
+
+| 명령어 | 설명 |
+|--------|------|
+| `git commit -m "메시지"` | 스테이징된 변경 사항 커밋 |
+| `git commit --amend` | 마지막 커밋 수정 |
+| `git log` | 커밋 로그 확인 |
+| `git log --oneline --graph` | 한 줄 요약 그래프 형태로 로그 보기 |
+| `git diff` | 변경 사항 확인 |
+| `git diff --staged` | 스테이징된 변경 사항 보기 |
+
+---
+
+### 🌿 브랜치 관리
+
+| 명령어 | 설명 |
+|--------|------|
+| `git branch` | 브랜치 목록 보기 |
+| `git branch <이름>` | 새 브랜치 생성 |
+| `git checkout <브랜치>` | 브랜치 이동 |
+| `git checkout -b <이름>` | 새 브랜치 생성 후 이동 |
+| `git branch -d <브랜치>` | 브랜치 삭제 (병합된 경우) |
+| `git branch -D <브랜치>` | 강제 브랜치 삭제 |
+
+---
+
+### 🔁 병합 및 리베이스
+
+| 명령어 | 설명 |
+|--------|------|
+| `git merge <브랜치>` | 현재 브랜치에 대상 브랜치 병합 |
+| `git rebase <브랜치>` | 대상 브랜치 기준으로 내 브랜치 커밋 재배열 |
+| `git rebase -i HEAD~n` | n개의 이전 커밋을 인터랙티브하게 수정 |
+| `git cherry-pick <커밋>` | 특정 커밋을 현재 브랜치에 적용 |
+
+---
+
+### 🔄 원격 저장소와의 연동
+
+| 명령어 | 설명 |
+|--------|------|
+| `git remote -v` | 연결된 원격 저장소 확인 |
+| `git remote add origin <URL>` | 원격 저장소 연결 |
+| `git fetch` | 원격 저장소의 변경 사항 가져오기 |
+| `git pull` | fetch + merge 실행 (로컬에 병합) |
+| `git push` | 원격 저장소로 커밋 반영 |
+| `git push -u origin <브랜치>` | 원격 브랜치 생성 및 추적 설정 |
+| `git push --force` | 강제 푸시 (주의) |
+| `git push --force-with-lease` | 안전한 강제 푸시 |
+
+---
+
+### 🧪 되돌리기 및 복구
+
+| 명령어 | 설명 |
+|--------|------|
+| `git revert <커밋>` | 커밋을 취소하는 새로운 커밋 생성 |
+| `git reset --soft <커밋>` | 해당 커밋까지 되돌리되, 변경 사항은 유지 |
+| `git reset --mixed <커밋>` | 스테이징만 취소 |
+| `git reset --hard <커밋>` | 모든 변경사항 제거하고 특정 커밋으로 이동 (위험) |
+| `git reflog` | HEAD 이동 히스토리 확인 (복구 시 유용) |
+
+---
+
+### 📦 태그 관리
+
+| 명령어 | 설명 |
+|--------|------|
+| `git tag` | 태그 목록 보기 |
+| `git tag <이름>` | 태그 생성 |
+| `git tag -a <이름> -m "메시지"` | 주석이 있는 태그 생성 |
+| `git push origin <태그>` | 원격 저장소에 태그 푸시 |
+| `git push origin --tags` | 전체 태그 푸시 |
+| `git checkout <태그>` | 특정 태그로 체크아웃 (detached HEAD) |
+
+---
+
+### 🔧 기타 유용한 명령어
+
+| 명령어 | 설명 |
+|--------|------|
+| `git stash` | 현재 작업 상태 임시 저장 |
+| `git stash pop` | 마지막 stash 복원 후 제거 |
+| `git stash list` | stash 목록 확인 |
+| `git bisect` | 이진 탐색으로 버그 커밋 찾기 |
+| `git blame <파일>` | 각 줄마다 마지막 수정 커밋 정보 보기 |
+| `git shortlog` | 커밋 통계 요약 보기 |
+
+---
+
+> 이 문서는 실무 Git 사용 시 빠르게 참고하기 위한 용도로 제작되었습니다. 상황에 따라 적절한 명령어를 선택해 사용하세요.
